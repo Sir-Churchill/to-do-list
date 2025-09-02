@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row align-items-center mb-4">
+        <div class="col">
+            <h1 class="display-4">TODO list</h1>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-primary" href="{% url 'core:task_create' %}">Add task</a>
+        </div>
+    </div>
+
+    {% for task in task_list %}
+    <div class="card mb-3 shadow-sm">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col-md-9">
+                    <h5 class="card-title mb-1">
+                        {{ task.content }}
+                        <span class="ms-2 fw-bold {% if task.task_done %}text-success{% else %}text-danger{% endif %}">
+                            {% if task.task_done %}Done{% else %}Not done{% endif %}
+                        </span>
+                    </h5>
+                    <p class="card-text text-muted small mb-1">
+                        Created: {{ task.datetime|date:"F d, Y, g:i a" }}
+                        {% if task.deadline %}
+                            <span class="ms-2">Deadline: {{ task.deadline|date:"F d, Y, g:i a" }}</span>
+                        {% endif %}
+                    </p>
+                    <p class="card-text text-muted small">
+                        Tags:
+                        {% for tag in task.tags.all %}
+                            {{ tag.name }}{% if not forloop.last %}, {% endif %}
+                        {% empty %}
+                            No tags
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="col-md-3 text-end">
+                    {% if task.task_done %}
+                        <a class="btn btn-secondary btn-sm" href="{% url 'core:task_perform_action' pk=task.id %}">Undo</a>
+                    {% else %}
+                        <a class="btn btn-success btn-sm" href="{% url 'core:task_perform_action' pk=task.id %}">Complete</a>
+                    {% endif %}
+                    <a class="btn btn-link btn-sm" href="{% url 'core:task_update' task.pk %}">Update</a>
+                    <a class="btn btn-link btn-sm text-danger" href="{% url 'core:task_delete' task.pk %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
