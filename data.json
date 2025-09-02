@@ -1,0 +1,67 @@
+[
+  {
+    "model": "core.tag",
+    "pk": 1,
+    "fields": {
+      "name": "Work"
+    }
+  },
+  {
+    "model": "core.tag",
+    "pk": 2,
+    "fields": {
+      "name": "Study"
+    }
+  },
+  {
+    "model": "core.tag",
+    "pk": 3,
+    "fields": {
+      "name": "Personal"
+    }
+  },
+  {
+    "model": "core.task",
+    "pk": 1,
+    "fields": {
+      "content": "Finish project report",
+      "datetime": "2025-09-02T09:00:00Z",
+      "deadline": "2025-09-05T18:00:00Z",
+      "task_done": false,
+      "tags": [1]
+    }
+  },
+  {
+    "model": "core.task",
+    "pk": 2,
+    "fields": {
+      "content": "Prepare for exam",
+      "datetime": "2025-09-01T15:30:00Z",
+      "deadline": "2025-09-10T08:00:00Z",
+      "task_done": false,
+      "tags": [2]
+    }
+  },
+  {
+    "model": "core.task",
+    "pk": 3,
+    "fields": {
+      "content": "Call a friend",
+      "datetime": "2025-09-02T12:45:00Z",
+      "deadline": null,
+      "task_done": true,
+      "tags": [3]
+    }
+  },
+  {
+    "model": "core.task",
+    "pk": 4,
+    "fields": {
+      "content": "Go to the gym",
+      "datetime": "2025-09-02T07:15:00Z",
+      "deadline": null,
+      "task_done": false,
+      "tags": [1, 3]
+    }
+  }
+]
