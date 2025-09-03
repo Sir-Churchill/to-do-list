@@ -3,7 +3,7 @@ from .views import (
     TaskCreateView,
     TaskListView, TaskUpdateView,
     TaskDeleteView, TagListView, TagCreateView,
-    TagUpdateView, TagDeleteView, perform_action)
+    TagUpdateView, TagDeleteView, TaskToggleStatusView)
 
 urlpatterns = [
     path("", TaskListView.as_view(), name="task_list"),
@@ -14,7 +14,7 @@ urlpatterns = [
     path("tags/create/", TagCreateView.as_view(), name="tag_create"),
     path("tags/update/<int:pk>/", TagUpdateView.as_view(), name="tag_update"),
     path("tags/delete/<int:pk>/", TagDeleteView.as_view(), name="tag_delete"),
-    path("tasks/<int:pk>/perform_action/", perform_action, name="task_perform_action"),
+    path("tasks/<int:pk>/toggle/", TaskToggleStatusView.as_view(), name="task_toggle"),
 ]
 
 app_name = "core"
