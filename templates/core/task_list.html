@@ -39,11 +39,15 @@
                     </p>
                 </div>
                 <div class="col-md-3 text-end">
-                    {% if task.task_done %}
-                        <a class="btn btn-secondary btn-sm" href="{% url 'core:task_perform_action' pk=task.id %}">Undo</a>
-                    {% else %}
-                        <a class="btn btn-success btn-sm" href="{% url 'core:task_perform_action' pk=task.id %}">Complete</a>
-                    {% endif %}
+                    <form action="{% url 'core:task_toggle' pk=task.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        {% if task.task_done %}
+                            <button type="submit" class="btn btn-secondary btn-sm">Undo</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-success btn-sm">Complete</button>
+                        {% endif %}
+                    </form>
+
                     <a class="btn btn-link btn-sm" href="{% url 'core:task_update' task.pk %}">Update</a>
                     <a class="btn btn-link btn-sm text-danger" href="{% url 'core:task_delete' task.pk %}">Delete</a>
                 </div>
